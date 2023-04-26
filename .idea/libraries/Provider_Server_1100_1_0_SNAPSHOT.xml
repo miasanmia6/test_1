@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Provider_Server_1100-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Provider_Server_1100/target/Provider_Server_1100-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
