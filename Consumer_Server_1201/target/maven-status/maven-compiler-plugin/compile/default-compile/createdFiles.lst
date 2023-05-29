@@ -1,4 +1,6 @@
 Consumer_Server_1201\entity\User.class
+Consumer_Server_1201\loadbalance\LoadBalancerConfig.class
 Consumer_Server_1201\Controller\Cart1Controller.class
 Consumer_Server_1201\entity\CommonResult.class
 Consumer_Server_1201\EurekaApplication1201.class
+Consumer_Server_1201\feign\UserFeignClient.class

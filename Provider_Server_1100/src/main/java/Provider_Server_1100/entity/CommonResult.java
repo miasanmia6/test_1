@@ -2,7 +2,7 @@ package Provider_Server_1100.entity;
 
 import java.io.Serializable;
 
-public class CommonResult<T> implements Serializable {
+public class CommonResult<T> extends User implements Serializable {
     private Integer code;
 
     public CommonResult() {

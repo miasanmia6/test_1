@@ -1,44 +1,29 @@
-package Provider_Server_1100.controller;
+package Provider_Server_1101.controller;
 
-import Provider_Server_1100.entity.CommonResult;
-import Provider_Server_1100.entity.User;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import Provider_Server_1101.entity.CommonResult;
+import Provider_Server_1101.entity.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    Environment environment;
-
     private List<User> userList = new ArrayList<>();
 
     @GetMapping("/getUserById/{userId}")
     public CommonResult<User> getUserById(@PathVariable("userId")  Integer userId){
         //模拟返回业务数据
-        return new CommonResult(200,"success(1100)",new User(userId,"张三","123"));
+        return new CommonResult(200,"success(1101)",new User(userId,"张三","123"));
     }
 
     @PostMapping("/add")
     public CommonResult add(@RequestBody User adduser) {
         userList.add(adduser);
-//        String hostIp = null;
-//        try {
-//            hostIp = InetAddress.getLocalHost().getHostAddress();
-//        } catch (UnknownHostException e) {
-//            e.printStackTrace();
-//        }
-//        String port = environment.getProperty("server.port");
-//        log.info(hostIp + ":" + port + " 的findUserById()被访问了！");
-        return new CommonResult(200,"success(1100)",new User(adduser.getUserId(), adduser.getUserName(),adduser.getPassword()));
+        return new CommonResult(200,"success(1101)",new User(adduser.getUserId(), adduser.getUserName(),adduser.getPassword()));
     }
 
     @PutMapping("/changeUserById/{userId}")
