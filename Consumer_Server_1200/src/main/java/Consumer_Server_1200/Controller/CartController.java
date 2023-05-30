@@ -20,11 +20,11 @@ public class CartController {
     private DiscoveryClient discoveryClient;
     @GetMapping("/getUserByName/{userName}")
     public CommonResult getUserByName(@PathVariable("userName")  String userName){
-        //Í¨¹ı·şÎñÌá¹©ÕßÃû£¨provider-server£©»ñÈ¡Eureka ServerÉÏµÄÔªÊı¾İ
+        //é€šè¿‡æœåŠ¡æä¾›è€…åï¼ˆprovider-serverï¼‰è·å–Eureka Serverä¸Šçš„å…ƒæ•°æ®
         List<ServiceInstance> instanceList = discoveryClient.getInstances("provider-server");
-        //ÏÖÔÚ£¬ÔªÊı¾İ¼¯ºÏÖĞÖ»ÓĞÒ»¸ö·şÎñĞÅÏ¢
+        //ç°åœ¨ï¼Œå…ƒæ•°æ®é›†åˆä¸­åªæœ‰ä¸€ä¸ªæœåŠ¡ä¿¡æ¯
         ServiceInstance instance = instanceList.get(0);
-        //Ê¹ÓÃgetForObject·½·¨µ÷ÓÃÌá¹©ÕßÎ¢·şÎñ
+        //ä½¿ç”¨getForObjectæ–¹æ³•è°ƒç”¨æä¾›è€…å¾®æœåŠ¡
         CommonResult result = restTemplate.getForObject(
                 "http://"+instance.getHost()+":"+instance.getPort()+"/user/getUserByName/"+userName, CommonResult.class);
         return result;

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Consumer_Server_1200/src/main/java/Consumer_Server_1200/Controller/CartController.java" charset="GBK" />
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/Consumer_Server_1200/src/main/java/Consumer_Server_1200/Controller/CartController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Consumer_Server_1200/src/main/java/Consumer_Server_1200/entity/User.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Consumer_Server_1201/src/main/java/Consumer_Server_1201/entity/User.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Eureka_Server_1300/src/main/java/Consumer_Server_1200/entity/User.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Provider_Server_1100/src/main/java/Provider_Server_1100/entity/User.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Provider_Server_1101/src/main/java/Provider_Server_1101/entity/User.java" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />

@@ -5,6 +5,9 @@ import Consumer_Server_1201.entity.CommonResult;
 import Consumer_Server_1201.entity.User;
 import Consumer_Server_1201.feign.UserFeignClient;
 import Consumer_Server_1201.loadbalance.LoadBalancerConfig;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -18,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @RestController
@@ -34,8 +38,18 @@ public class Cart1Controller {
     //get方法
     @LoadBalanced
     @GetMapping("/getUserById/{userId}")
-    public CommonResult getUserByName(@PathVariable("userId")  Integer userId) {
-        return userFeignClient.getUserById(userId);
+    @RateLimiter(name = "backendA", fallbackMethod = "fallback")
+    public CommonResult getUserByName(@PathVariable("userId") Integer userId) {
+        System.out.println("进入方法");
+        CommonResult<User> result = userFeignClient.getUserById(userId);
+        System.out.println("离开方法");
+        return result;
+    }
+
+    public CommonResult<User> fallback(Integer userId, Throwable e) {
+        e.printStackTrace();
+        System.out.println("fallback已经调用");
+        return new CommonResult<>(400, "当前用户服务不正常，请稍后再试", new User());
     }
 
     //post方法
@@ -48,9 +62,26 @@ public class Cart1Controller {
     //put方法
     @LoadBalanced
     @PutMapping("/changeUserById/{userId}")
+    @CircuitBreaker(name="backendB",fallbackMethod = "fallback")
     public ResponseEntity<String> updateUser(@PathVariable("userId")  Integer userId, @RequestBody User user) {
+        System.out.println("进入方法");
+        try {
+            Thread.sleep(10000L);//阻塞10秒
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         userFeignClient.updateUser(userId,user);
+        System.out.println("离开方法");
         return ResponseEntity.ok("User updated successfully");
+    }
+
+    public CompletableFuture<User> fallback(Integer userId,User user, Throwable e){
+        e.printStackTrace();
+        System.out.println("fallback已经调用");
+        CompletableFuture<User> result = CompletableFuture.supplyAsync(()->{
+            return new CommonResult<>(400,"当前用户服务不正常，请稍后再试",new User()).getResult();
+        });
+        return result;
     }
 
     //delete方法
