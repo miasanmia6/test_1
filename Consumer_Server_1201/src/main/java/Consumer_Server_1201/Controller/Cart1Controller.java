@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @RestController
 @RequestMapping("/cart1")
+@RefreshScope //¿ªÆô¶¯Ì¬Ë¢ÐÂ
 @LoadBalancerClient(value = "provider-server", configuration = LoadBalancerConfig.class)
 public class Cart1Controller {
     @Autowired

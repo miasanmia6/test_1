@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Gateway_Server_1400" />
         <module name="Eureka_Server_1300" />
+        <module name="Config_Server_1501" />
         <module name="Eureka_Server_1301" />
         <module name="Consumer_Server_1201" />
         <module name="Consumer_Server_1200" />
         <module name="Provider_Server_1101" />
+        <module name="Config_Server_1500" />
         <module name="Provider_Server_11001" />
       </profile>
     </annotationProcessing>
