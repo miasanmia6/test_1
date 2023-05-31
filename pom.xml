@@ -14,6 +14,7 @@
         <module>Eureka_Server_1301</module>
         <module>Consumer_Server_1201</module>
         <module>Provider_Server_1101</module>
+        <module>Gateway_Server_1400</module>
     </modules>
     <properties>
         <maven.compiler.source>19</maven.compiler.source>

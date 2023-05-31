@@ -38,12 +38,8 @@ public class Cart1Controller {
     //get方法
     @LoadBalanced
     @GetMapping("/getUserById/{userId}")
-    @RateLimiter(name = "backendA", fallbackMethod = "fallback")
     public CommonResult getUserByName(@PathVariable("userId") Integer userId) {
-        System.out.println("进入方法");
-        CommonResult<User> result = userFeignClient.getUserById(userId);
-        System.out.println("离开方法");
-        return result;
+        return userFeignClient.getUserById(userId);
     }
 
     public CommonResult<User> fallback(Integer userId, Throwable e) {
